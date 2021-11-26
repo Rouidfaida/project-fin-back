@@ -9,5 +9,5 @@ app.use('/user',user)
 app.use('/product',products)
 
 
-let PORT = process.env.PORT ||5000;
+let PORT = process.env.PORT ||4000;
 app.listen(PORT,(err)=>err? console.log(err):console.log(`server is running ${PORT}`));

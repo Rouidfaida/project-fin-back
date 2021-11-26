@@ -12,10 +12,7 @@ let productSchema=new Schema({
         required: true,
       },
       imageUrl: String,
-      category: {
-        type: String,
-        required: true,
-      },
+    
       price: {
         type: String,
         required: true,
