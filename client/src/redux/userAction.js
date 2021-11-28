@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, SIGN_UP, SIGN_UP_FAIL, SIGN_UP_SUCCESS } from "./userActionType"
+import { LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, PROFILE, PROFILE_FAIL, PROFILE_SUCCESS, SIGN_UP, SIGN_UP_FAIL, SIGN_UP_SUCCESS } from "./userActionType"
 import axios from 'axios'
 
 
@@ -39,9 +39,35 @@ export const loginUser=(user)=>async(dispatch)=>{
         })
     }
 }
-export const logout = () =>async (dispatch) => {
-  
+export const logout = () => {
+    localStorage.removeItem("token")
+    return {
+        type: LOGOUT
+    }
+}
+  export const profileUser=()=>async(dispatch)=>{
     dispatch({
-      type: LOGOUT,
-    });
-  };
+        type:PROFILE
+    })
+    let token=localStorage.setItem('token')
+    let config={
+        Headers:{
+            Authorization:token
+        }
+    }
+    try {
+        let res=await axios.get('/user/get',config)
+        dispatch({
+            type:PROFILE_SUCCESS,
+            payload:res.data
+        })
+    } catch (error) {
+        dispatch({
+            type:PROFILE_FAIL,
+            payload:error.response.data
+        })
+    }
+}
+export const addManagers=()=>async(dispatch)=>{
+    
+}

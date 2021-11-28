@@ -15,10 +15,9 @@ useEffect(() => {
 
     return (
         <div>
-          
             {
-                            loading?<h1>loading...</h1>:
-                 products.map((el,i)=><ProductCard el={el} key={i}/>)
+            loading?<h1>loading...</h1>:
+            products.map((el,i)=><ProductCard el={el} key={i}/>)
             }
           
           

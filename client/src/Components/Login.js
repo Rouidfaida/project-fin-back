@@ -16,14 +16,18 @@ const handleSubmit=(e)=>{
   alert('this is required'):
   e.preventDefault()
   dispatch(loginUser({email,password}))
+  dispatch(getProduct())
  
 }
-const {user,loading,isAdmin} = useSelector(state => state.alluser)
+const {users,loading} = useSelector(state => state.alluser)
 
 
     return (
 
  <div class="container">
+  {                loading?<h1>...loading</h1>:localStorage.getItem('token')?<Navigate to='/admin'/>:
+
+   
 	<div class="card">
 		<div class="card-image">	
 			<h2 class="card-heading">
@@ -40,20 +44,17 @@ const {user,loading,isAdmin} = useSelector(state => state.alluser)
     <label class="input-label">Password <span style={{color:"red"}}>(*)</span> </label>
     <input class="input-field"  type="password"  required="required"  value={password} onChange={e=>setPassword(e.target.value)}  />
   </div>
-  
    
- <Link to='/'>
   <Button variant="primary"  type="submit"  onClick={handleSubmit}>
     
     Submit
    
   </Button>
   
-  </Link>
   
 </form> 
 </div>
-</div>
+}</div>
           
     )
 }

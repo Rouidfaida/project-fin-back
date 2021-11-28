@@ -1,5 +1,5 @@
 import axios from "axios"
-import { PRODUCT_GET, PRODUCT_GET_FAIL, PRODUCT_GET_SUCCESS } from "./productActionType"
+import { ADD_PRODUCT, ADD_PRODUCT_FAIL, ADD_PRODUCT_SUCCESS, PRODUCT_GET, PRODUCT_GET_FAIL, PRODUCT_GET_SUCCESS } from "./productActionType"
 
 
 
@@ -20,3 +20,25 @@ try {
     }) 
 }
 }
+export const addProduct = (newProduct) => async (dispatch) => {
+    dispatch({ type: ADD_PRODUCT });
+    let token = localStorage.getItem("token");
+    let config = {
+      headers: {
+          Authorization: token,
+      }
+    };
+    try {
+      const res = await axios.post("/product/postProduct",newProduct,config);
+      
+      dispatch({
+        type: ADD_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ADD_PRODUCT_FAIL,
+        payload: error.response.data,
+      });
+    }
+  };

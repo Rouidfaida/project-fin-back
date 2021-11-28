@@ -1,6 +1,7 @@
 const Product = require("../models/product");
 //add product
 exports.addProducts = async (req, res) => {
+
     try {
       const newProduct = await new Product(req.body);
       newProduct.save();

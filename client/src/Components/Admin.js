@@ -1,15 +1,23 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, Navigate } from 'react-router-dom'
+import { getProduct } from '../redux/productAction'
+import AddProduct from './AddProduct'
+import Home from './Home'
 import Login from './Login'
 
 const Admin = () => {
-    const {user} = useSelector(state => state)
+    const {users,loading} = useSelector(state => state.alluser)
+    const dispatch = useDispatch()
+  
     return (
-        <div>  {
-            
-            user.isRole==='Admin'?<Login/>:
-            <h2>home</h2>}
-        </div>
+        <div>  
+          {users.userRole === "Manager" ? 
+           <AddProduct/>
+           : <Home/>
+           }
+        
+                </div>
     )
 }
 
