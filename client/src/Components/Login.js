@@ -4,19 +4,19 @@ import { loginUser } from '../redux/userAction'
 import {Form,Button} from'react-bootstrap'
 import { Link,Navigate } from 'react-router-dom'
 import './signUp.css'
-import Admin from './Admin'
-import { getProduct } from '../redux/productAction'
+import { getProductlist } from '../redux/productAction'
+
 
 const Login = () => {
     const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 const dispatch = useDispatch()
 const handleSubmit=(e)=>{
-  email.trim()===""||password.trim()===""?
-  alert('this is required'):
+  // email.trim()===""||password.trim()===""?
+  // alert('this is required'):
   e.preventDefault()
   dispatch(loginUser({email,password}))
-  dispatch(getProduct())
+  dispatch(getProductlist())
  
 }
 const {users,loading} = useSelector(state => state.alluser)
@@ -24,38 +24,48 @@ const {users,loading} = useSelector(state => state.alluser)
 
     return (
 
- <div class="container">
-  {                loading?<h1>...loading</h1>:localStorage.getItem('token')?<Navigate to='/admin'/>:
+  <div>
 
+{                loading?<h1>...loading</h1>:localStorage.getItem('token')?<Navigate to='/'/>:
+<Form style={{margin:"100px 100px 400px 300px",border:"1px solid grey",width:"400px",backgroundColor:"pink"}}>
+  <Form.Group style={{width:"300px",marginLeft:"50px"}} className="mb-3" controlId="formGroupEmail">
+    <Form.Label style={{marginLeft:'-200px'}}>Adresse Email<span style={{color:"red"}}>(*)</span></Form.Label>
+    <Form.Control type="email" required="required" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Enter email" />
+  </Form.Group>
+  <Form.Group  style={{width:"300px",marginLeft:"50px"}} className="mb-3" controlId="formGroupPassword">
+    <Form.Label style={{marginLeft:'-200px'}}>Mot de passe<span style={{color:"red"}}>(*)</span></Form.Label>
+    <Form.Control type="password" placeholder="Password" required="required"  value={password} onChange={e=>setPassword(e.target.value)} />
+  </Form.Group>
+     <Button variant="primary"  type="submit"  onClick={handleSubmit}>submit</Button>
+
+</Form>
+  
+
+//       <form class="card-form" onSubmit={handleSubmit}>
+// 			<div class="input">
+//     <label class="input-label">Email address <span style={{color:"red"}}>(*)</span></label>
+//     <input class="input-field"  type="email"   required="required" value={email} onChange={e=>setEmail(e.target.value)} />
+//     </div>
+//     <div class="input">
+//     <label class="input-label">Password <span style={{color:"red"}}>(*)</span> </label>
+//     <input class="input-field"  type="password"  required="required"  value={password} onChange={e=>setPassword(e.target.value)}  />
+//   </div>
    
-	<div class="card">
-		<div class="card-image">	
-			<h2 class="card-heading">
-				Get started
-				<small>Let us create your account</small>
-			</h2>
-		</div>
-      <form class="card-form" onSubmit={handleSubmit}>
-			<div class="input">
-    <label class="input-label">Email address <span style={{color:"red"}}>(*)</span></label>
-    <input class="input-field"  type="email"   required="required" value={email} onChange={e=>setEmail(e.target.value)} />
-    </div>
-    <div class="input">
-    <label class="input-label">Password <span style={{color:"red"}}>(*)</span> </label>
-    <input class="input-field"  type="password"  required="required"  value={password} onChange={e=>setPassword(e.target.value)}  />
-  </div>
-   
-  <Button variant="primary"  type="submit"  onClick={handleSubmit}>
+//   <Button variant="primary"  type="submit"  onClick={handleSubmit}>
     
-    Submit
+//     Submit
    
-  </Button>
+//   </Button>
   
   
-</form> 
-</div>
+// </form> 
+// </div>
 }</div>
-          
+
+
+
+
+
     )
 }
 

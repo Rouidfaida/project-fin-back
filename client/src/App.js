@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Components/Home';
 import Navbare from './Components/Navbare';
 import Admin from './Components/Admin';
-import Product from './Components/Product';
+import ProductList from './Components/ProductList';
 import Livre from './Components/Livre';
 
 import AddProduct from './Components/AddProduct';
@@ -19,13 +19,13 @@ function App() {
       <Router>
         <Routes>
 
-        <Route path='/'element={<Home/>} />
-        <Route path='/sign'element={<SignUp/>} />
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/admin' element={<Admin/>}/>
-        <Route path='/product' element={<Product/>}/>
-        <Route path='/addproduct' element={<AddProduct/>}/>
-        <Route path='/livre' element={<Livre/>}/>
+        <Route exact path='/'element={<Home/>} />
+        <Route exact path='/sign'element={<SignUp/>} />
+        <Route exact path='/login' element={<Login/>}/>
+        <Route exact path='/admin' element={<Admin/>}/>
+        <Route exact path='/productList' element={<ProductList/>}/>
+        <Route exact path='/addproduct' element={<AddProduct/>}/>
+        <Route exact path='/livre' element={<Livre/>}/>
 
         </Routes>
       </Router>

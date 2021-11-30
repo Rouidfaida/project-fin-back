@@ -11,13 +11,18 @@ exports.addProducts = async (req, res) => {
     }
   };
   //put product
+ 
+
   exports.putProduct = async (req, res) => {
     try {
-      const UpdateProduct = await Product.findByIdAndUpdate(req.params.id,{...req.body},{new:true});
-      res.send(UpdateProduct);
-    } catch (error) {
-      res.status(500).json({errors: error.message});
-    }
+      let newProductEdited= await Product.findByIdAndUpdate(req.params.id,{...req.body},{new:true})
+      res.send(newProductEdited)
+      
+   
+  } catch (error) {
+      return res.status(500).json({msg: error.message})
+  }
+    
   };
   //delete product
   exports.deletProduct = async (req, res) => {

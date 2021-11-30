@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
 import { getProduct } from '../redux/productAction'
 import AddProduct from './AddProduct'
+import AddUser from './AddUser'
 import Home from './Home'
 import Login from './Login'
 
@@ -14,7 +15,7 @@ const Admin = () => {
         <div>  
           {users.userRole === "Manager" ? 
            <AddProduct/>
-           : <Home/>
+           : users.userRole==='Admin'?<AddUser/>:<Home/>
            }
         
                 </div>

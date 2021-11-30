@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addProduct } from '../redux/productAction'
 import { profileUser } from '../redux/userAction'
-import Product from './Product'
+import Product from './ProductList'
 
 const AddProduct = () => {
     const {users} = useSelector(state => state.alluser)
