@@ -5,6 +5,7 @@ import {Form,Button} from'react-bootstrap'
 import { Link,Navigate } from 'react-router-dom'
 import './signUp.css'
 import { getProductlist } from '../redux/productAction'
+import Navbare from './Navbare'
 
 
 const Login = () => {
@@ -25,9 +26,10 @@ const {users,loading} = useSelector(state => state.alluser)
     return (
 
   <div>
+    <Navbare/>
 
 {                loading?<h1>...loading</h1>:localStorage.getItem('token')?<Navigate to='/'/>:
-<Form style={{margin:"100px 100px 400px 300px",border:"1px solid grey",width:"400px",backgroundColor:"pink"}}>
+<Form style={{margin:"100px 100px 400px 300px"}}>
   <Form.Group style={{width:"300px",marginLeft:"50px"}} className="mb-3" controlId="formGroupEmail">
     <Form.Label style={{marginLeft:'-200px'}}>Adresse Email<span style={{color:"red"}}>(*)</span></Form.Label>
     <Form.Control type="email" required="required" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Enter email" />

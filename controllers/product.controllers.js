@@ -51,3 +51,4 @@ exports.addProducts = async (req, res) => {
       res.status(500).json({errors: error.message});
     }
   };
+  

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ADD_PRODUCT, ADD_PRODUCT_FAIL, ADD_PRODUCT_SUCCESS, DELETE_PRODUCT, DELETE_PRODUCT_FAIL, DELETE_PRODUCT_SUCCESS, EDIT_PRODUCT, EDIT_PRODUCT_FAIL, EDIT_PRODUCT_SUCCESS, PRODUCT_GET, PRODUCT_GET_FAIL, PRODUCT_GET_SUCCESS } from "./productActionType"
+import { ADD_PRODUCT, ADD_PRODUCT_FAIL, ADD_PRODUCT_SUCCESS, DELETE_PRODUCT, DELETE_PRODUCT_FAIL, DELETE_PRODUCT_SUCCESS, EDIT_PRODUCT, EDIT_PRODUCT_FAIL, EDIT_PRODUCT_SUCCESS, PRODUCT_FILTER, PRODUCT_GET, PRODUCT_GET_FAIL, PRODUCT_GET_ID, PRODUCT_GET_ID_FAIL, PRODUCT_GET_ID_SUCCESS, PRODUCT_GET_SUCCESS } from "./productActionType"
 
 
 
@@ -20,7 +20,12 @@ try {
     }) 
 }
 }
-
+export const filterProduct=(categorifilter)=>async(dispatch)=>{
+  dispatch({
+    type:PRODUCT_FILTER,
+    payload:categorifilter
+  })
+}
 export const addProduct = (newProduct) => async (dispatch) => {
   dispatch({ type: ADD_PRODUCT });
   let token = localStorage.getItem("token");
@@ -90,3 +95,20 @@ export const deleteProduct = (id) => async (dispatch) => {
     });
   }
 };
+//get product id
+export const getProductId = (id) => async (dispatch) => {
+  dispatch({
+    type:PRODUCT_GET_ID
+  })
+  try {
+    let res = await axios.get(`/product/getProductById/${id}`)
+    dispatch({
+      type: PRODUCT_GET_ID_SUCCESS,
+      payload: res.data,
+    })
+  } catch (error) {
+dispatch({
+  type:PRODUCT_GET_ID_FAIL,
+  payload:error.response.data
+})  }
+}

@@ -5,6 +5,7 @@ import { loginUser, signUpUser } from '../redux/userAction'
  import {Alert,Button} from'react-bootstrap'
 import { isEmail } from "validator";
 import './signUp.css'
+import Navbare from './Navbare'
 
   
 
@@ -30,7 +31,9 @@ alert('success signup')}
 
 
     return (
-      <div class="container">
+      <div>
+              <Navbare/>
+
 	<div class="card">
 		<div class="card-image">	
 			<h2 class="card-heading">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,16 +8,22 @@ import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Modal, Form,Button, Col, Row } from "react-bootstrap";
-import { deleteProduct, editProduct, getProduct } from '../redux/productAction';
+import { deleteProduct, editProduct, getProductId, getProductlist } from '../redux/productAction';
 import EditProduct from './EditProduct';
+import { getUsers } from '../redux/userAction';
 
 const ProductCard = ({el}) => {
    
     const {users,loading} = useSelector(state => state.alluser)
+    useEffect(() => {
+      dispatch(getUsers())
+        
+    }, [])
 const dispatch = useDispatch()
 const handelSubmit=()=>
 {
-  dispatch(deleteProduct(el._id))
+  dispatch(deleteProduct(el._id),
+  getProductlist())
 }
     return (
         <div >
@@ -54,9 +60,10 @@ const handelSubmit=()=>
 :
 
       <Button size="small">Share</Button>}
+      <Link   to={`infos/${el._id}`}>
        
-
-       
+{<Button onClick={()=>dispatch(getProductId(el._id))}>get</Button>
+}</Link>   
       </CardActions>
     </Card>
    

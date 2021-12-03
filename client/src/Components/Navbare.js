@@ -1,15 +1,27 @@
-import React from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCategorielist } from '../redux/categorieAction'
+import { filterProduct } from '../redux/productAction'
 import { logout } from '../redux/userAction';
 import {  Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { GiSpellBook } from 'react-icons/gi';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import Filter from './Filter';
 
 const Navbare = () => {
-    const dispatch = useDispatch()
     const logOut = () => {
         dispatch(logout());}
+        const categories = useSelector(state => state.allcategorie)
+        const [category, setCategory] = useState('')
+        const handleCategory = (e) => {
+            setCategory(e.target.value);
+            dispatch(filterProduct(e.target.value))
+          };
+          const dispatch = useDispatch();
+          useEffect (() => {
+            dispatch(getCategorielist());
+          }, [dispatch]);
     return (
         <div>
             <div style={{backgroundColor:"black",border: "3px  solid",height:"100px"}}>
@@ -40,13 +52,20 @@ const Navbare = () => {
               
            <Navbar style={{backgroundColor:"#FF940C"}}>
     <Container>
-    <NavDropdown title="Categories" id="basic-nav-dropdown" style={{color:"black"}}>
-          <NavDropdown.Item href="/livre">livre</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown>
+    <NavDropdown title="Categories" id="basic-nav-dropdown" style={{color:"black"}}  name="category" value={category} onChange={handleCategory}>
+    {/* <option value="all" >All Products</option>
+    <option value="all">All Products</option>
+
+            {categories.categories.map((category) => (
+              <option value={ category.name} key={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </NavDropdown> */}
+             
+    <Filter/> 
+
+</NavDropdown>
     <Nav className="me-auto">
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#features">Features</Nav.Link>

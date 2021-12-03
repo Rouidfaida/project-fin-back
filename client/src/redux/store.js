@@ -9,7 +9,7 @@ import { listreducer } from "./listReducer";
   const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['user'] // which reducer want to store
+    // whitelist: ['user'] // which reducer want to store
   };
   
   const rootReducer=listreducer

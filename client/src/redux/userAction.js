@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, PROFILE, PROFILE_FAIL, PROFILE_SUCCESS, SIGN_UP, SIGN_UP_FAIL, SIGN_UP_SUCCESS } from "./userActionType"
+import { GET_USER, GET_USER_FAIL, GET_USER_SUCCESS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, PROFILE, PROFILE_FAIL, PROFILE_SUCCESS, SIGN_UP, SIGN_UP_FAIL, SIGN_UP_SUCCESS } from "./userActionType"
 import axios from 'axios'
 
 
@@ -68,6 +68,20 @@ export const logout = () => {
         })
     }
 }
-export const addManagers=()=>async(dispatch)=>{
-    
+export const getUsers=()=>async(dispatch)=>{
+    dispatch({
+        type:GET_USER
+    })
+    try {
+        let res=await axios.get('/user/get')
+        dispatch({
+            type:GET_USER_SUCCESS,
+            payload:res.data
+        })
+    } catch (error) {
+        dispatch({
+            type:GET_USER_FAIL,
+            payload:error.response.data
+        })
+    }
 }
