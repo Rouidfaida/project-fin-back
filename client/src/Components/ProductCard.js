@@ -15,10 +15,10 @@ import { getUsers } from '../redux/userAction';
 const ProductCard = ({el}) => {
    
     const {users,loading} = useSelector(state => state.alluser)
-    useEffect(() => {
-      dispatch(getUsers())
+    // useEffect(() => {
+    //   dispatch(getUsers())
         
-    }, [])
+    // }, [])
 const dispatch = useDispatch()
 const handelSubmit=()=>
 {
@@ -44,7 +44,13 @@ const handelSubmit=()=>
         <Typography variant="body2" color="text.secondary">
          {el.price}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+
+        {el.quantity > 0 ? (
+        <h5>Currently available ({el.quantity} in stock) </h5>
+      ) : (
+        <h5>Currently out of stock </h5>
+      )}
+     <Typography variant="body2" color="text.secondary">
          {el.quantite}
         </Typography>
       </CardContent>
@@ -62,7 +68,7 @@ const handelSubmit=()=>
       <Button size="small">Share</Button>}
       <Link   to={`infos/${el._id}`}>
        
-{<Button onClick={()=>dispatch(getProductId(el._id))}>get</Button>
+{<Button onClick={dispatch(getProductId(el._id))}>get</Button>
 }</Link>   
       </CardActions>
     </Card>

@@ -12,6 +12,7 @@ import Livre from './Components/Livre';
 
 import AddProduct from './Components/AddProduct';
 import Info from './Components/Info';
+import Profile from './Components/Profile';
 // import 'antd/dist/antd.css';
 function App() {
   
@@ -28,6 +29,8 @@ function App() {
         <Route exact path='/addproduct' element={<AddProduct/>}/>
         <Route exact path='/livre' element={<Livre/>}/>
         <Route exact path="/infos/:id" element={<Info/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+
 
         </Routes>
       </Router>

@@ -10,7 +10,7 @@ app.use(express.json())
 app.use('/user',user)
 app.use('/product',products)
 app.use('/categorie',categorie)
-
+// app.use('/cart',cart)
 
 
 let PORT = process.env.PORT ||5000;

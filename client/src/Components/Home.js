@@ -30,7 +30,7 @@ const Home = () => {
           alt="Lg"
         />
 <ProductList product={products}/> 
-<UserList user={users}/>
+{/* <UserList user={users}/> */}
 {/* <Login/> */}
        </div>
     )

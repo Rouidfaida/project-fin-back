@@ -45,8 +45,8 @@ exports.addProducts = async (req, res) => {
   //get product by id
   exports.getProductById = async (req, res) => {
     try {
-      let product= await Product.findById(req.params.id)
-      res.send(product)
+      let productn= await Product.findById(req.params.id)
+      res.send(productn)
     } catch (error) {
       res.status(500).json({errors: error.message});
     }

@@ -28,7 +28,9 @@ const {users,loading} = useSelector(state => state.alluser)
   <div>
     <Navbare/>
 
-{                loading?<h1>...loading</h1>:localStorage.getItem('token')?<Navigate to='/'/>:
+{                    
+                loading?<h1>...loading</h1>:localStorage.getItem('token')?<Navigate to='/'/>:
+           
 <Form style={{margin:"100px 100px 400px 300px"}}>
   <Form.Group style={{width:"300px",marginLeft:"50px"}} className="mb-3" controlId="formGroupEmail">
     <Form.Label style={{marginLeft:'-200px'}}>Adresse Email<span style={{color:"red"}}>(*)</span></Form.Label>

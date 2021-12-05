@@ -69,6 +69,9 @@ exports.login=async(req,res)=>{
 exports.getUser=(req,res)=>{
     res.send(req.user);
 }
+//get user by id
+
+
 //add manager
 exports.addManager=async(req,res)=>{
     try {

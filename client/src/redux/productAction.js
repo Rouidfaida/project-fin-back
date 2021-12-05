@@ -101,14 +101,15 @@ export const getProductId = (id) => async (dispatch) => {
     type:PRODUCT_GET_ID
   })
   try {
-    let res = await axios.get(`/product/getProductById/${id}`)
+    const { data } = await axios.get(`/product/getProductById/${id}`)
     dispatch({
       type: PRODUCT_GET_ID_SUCCESS,
-      payload: res.data,
+      payload: data,
     })
   } catch (error) {
 dispatch({
   type:PRODUCT_GET_ID_FAIL,
   payload:error.response.data
-})  }
+})
+  }
 }
